@@ -1,97 +1,45 @@
 <template>
-    <!-- <div id="app"> -->
-    <div class="wrapper">
+  <div class="wrapper">
 
     <!-- HEADER -->
-    <header>
-      <div class="netflixLogo">
-        <a id="logo" href="#home"><img src="./assets/logo.png" alt="Logo Image"></a>
-      </div>      
-      <nav class="main-nav">                
-        <a href="#home">Home</a>
-        <a href="#tvShows">TV Shows</a>
-        <a href="#movies">Movies</a>
-        <a href="#originals">Originals</a>
-        <a href="#">Recently Added</a>
-        <a target="_blank" href="">Portfolio</a>        
-      </nav>
-      <nav class="sub-nav">
-        <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
-        <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
-        <a href="#">Account</a>        
-      </nav>      
-    </header>
+    <app-header></app-header>
     <!-- END OF HEADER -->
-    
+
     <!-- MAIN CONTAINER -->
-    <section class="main-container" >
+    <section class="main-container">
       <div class="location" id="home">
-          <h1 id="home">Popular on Netflix</h1>
-          <div class="box">
-            <a href=""><img src="./assets/p1.png" alt=""></a>
-            <a href=""><img src="./assets/p2.png" alt=""></a>
-            <a href=""><img src="./assets/p3.png" alt=""></a>
-            <a href=""><img src="./assets/p4.png" alt=""></a>
-            <a href=""><img src="./assets/p5.png" alt=""></a>
-            <a href=""><img src="./assets/p6.png" alt=""></a>
-    
-            <a href=""><img src="./assets/p7.png" alt=""></a>
-            <a href=""><img src="./assets/p8.png" alt=""></a>
-            <a href=""><img src="./assets/p9.png" alt=""></a>
-            <a href=""><img src="./assets/p10.png" alt=""></a>
-            <a href=""><img src="./assets/p11.png" alt=""></a>
-            <a href=""><img src="./assets/p12.png" alt=""></a>        
-          </div>
+        <h1 id="popular">Popular on Netflix</h1>
+        <section @click="onClickImg"> 
+          <b-carousel-list v-model="values" :data="items1" :arrow="arrow" :arrow-hover="arrowHover"
+            :items-to-show="perList" :items-to-list="increment" />
+        </section>
       </div>
-      
 
-      <h1 id="myList">Trending Now</h1>
-      <div class="box">
-        <a href=""><img src="./assets/t1.png" alt=""></a>
-        <a href=""><img src="./assets/t2.png" alt=""></a>
-        <a href=""><img src="./assets/t3.png" alt=""></a>
-        <a href=""><img src="./assets/t4.png" alt=""></a>
-        <a href=""><img src="./assets/t5.png" alt=""></a>
-        <a href=""><img src="./assets/t6.png" alt=""></a>                  
-      </div>
-      
+
+      <h1 id="trending">Trending Now</h1>
+      <section>
+          <b-carousel-list v-model="values" :data="items2" :arrow="arrow" :arrow-hover="arrowHover"
+            :items-to-show="perList" :items-to-list="increment"/>
+      </section>
+
       <h1 id="tvShows">TV Shows</h1>
-      <div class="box">
-        <a href=""><img src="./assets/tv1.png" alt=""></a>
-        <a href=""><img src="./assets/tv2.png" alt=""></a>
-        <a href=""><img src="./assets/tv3.png" alt=""></a>
-        <a href=""><img src="./assets/tv4.png" alt=""></a>
-        <a href=""><img src="./assets/tv5.png" alt=""></a>
-        <a href=""><img src="./assets/tv6.png" alt=""></a>
+      <section>
+          <b-carousel-list v-model="values" :data="items3" :arrow="arrow" :arrow-hover="arrowHover"
+            :items-to-show="perList" :items-to-list="increment"/>
+      </section>
 
-        <a href=""><img src="./assets/tv7.png" alt=""></a>
-        <a href=""><img src="./assets/tv8.png" alt=""></a>
-        <a href=""><img src="./assets/tv9.png" alt=""></a>
-        <a href=""><img src="./assets/tv10.png" alt=""></a>
-        <a href=""><img src="./assets/tv11.png" alt=""></a>
-        <a href=""><img src="./assets/tv12.png" alt=""></a>              
-      </div>
-      
 
       <h1 id="movies">Blockbuster Action & Adventure</h1>
-      <div class="box">
-        <a href=""><img src="./assets/m1.png" alt=""></a>
-        <a href=""><img src="./assets/m2.png" alt=""></a>
-        <a href=""><img src="./assets/m3.png" alt=""></a>
-        <a href=""><img src="./assets/m4.png" alt=""></a>
-        <a href=""><img src="./assets/m5.png" alt=""></a>
-        <a href=""><img src="./assets/m6.png" alt=""></a>                
-      </div>
+      <section>
+          <b-carousel-list v-model="values" :data="items4" :arrow="arrow" :arrow-hover="arrowHover"
+            :items-to-show="perList" :items-to-list="increment"/>
+      </section>
 
       <h1 id="originals">Netflix Originals</h1>
-      <div class="box">
-        <a href=""><img src="./assets/o1.png" alt=""></a>
-        <a href=""><img src="./assets/o2.png" alt=""></a>
-        <a href=""><img src="./assets/o3.png" alt=""></a>
-        <a href=""><img src="./assets/o4.png" alt=""></a>
-        <a href=""><img src="./assets/o5.png" alt=""></a>
-        <a href=""><img src="./assets/o6.png" alt=""></a>                
-      </div>
+      <section>
+          <b-carousel-list v-model="values" :data="items5" :arrow="arrow" :arrow-hover="arrowHover"
+            :items-to-show="perList" :items-to-list="increment"/>
+      </section>
     </section>
     <!-- END OF MAIN CONTAINER -->
 
@@ -127,172 +75,298 @@
       <p>&copy 1997-2022 Netflix, Inc.</p>
     </footer>
   </div>
-  <!-- </div> -->
 </template>
 
 <script>
-export default {
-  
-}
+  export default {
+    data() {
+      return {
+        arrow: true,
+        arrowHover: true,
+        values: 1,
+        perList: 6,
+        increment: 6,
+        items1: [{
+            alt: 'Slide 1',
+            title: 'Slide 1',
+            image: require("@/assets/p1.png"),
+          },
+          {
+            title: 'Slide 2',
+            image: require("@/assets/p2.png")
+          },
+          {
+            title: 'Slide 3',
+            image: require("@/assets/p3.png")
+          },
+          {
+            title: 'Slide 4',
+            image: require("@/assets/p4.png")
+          },  
+          {
+            title: 'Slide 5',
+            image: require("@/assets/p5.png")
+          },
+          {
+            title: 'Slide 6',
+            image: require("@/assets/p6.png")
+          },
+          {
+            title: 'Slide 7',
+            image: require("@/assets/p7.png")
+          },
+          {
+            title: 'Slide 8',
+            image: require("@/assets/p8.png")
+          },
+          {
+            title: 'Slide 9',
+            image: require("@/assets/p9.png")
+          },
+          {
+            title: 'Slide 10',
+            image: require("@/assets/p10.png")
+          },
+          {
+            title: 'Slide 11',
+            image: require("@/assets/p11.png")
+          },
+          {
+            title: 'Slide 12',
+            image: require("@/assets/p12.png")
+          }
+        ],
+        items2: [{
+            alt: 'Slide 1',
+            title: 'Slide 1',
+            image: require("@/assets/t1.png"),
+          },
+          {
+            title: 'Slide 2',
+            image: require("@/assets/t2.png")
+          },
+          {
+            title: 'Slide 3',
+            image: require("@/assets/t3.png")
+          },
+          {
+            title: 'Slide 4',
+            image: require("@/assets/t4.png")
+          },  
+          {
+            title: 'Slide 5',
+            image: require("@/assets/t5.png")
+          },
+          {
+            title: 'Slide 6',
+            image: require("@/assets/t6.png")
+          }
+        ],
+        items3: [{
+            alt: 'Slide 1',
+            title: 'Slide 1',
+            image: require("@/assets/tv1.png"),
+          },
+          {
+            title: 'Slide 2',
+            image: require("@/assets/tv2.png")
+          },
+          {
+            title: 'Slide 3',
+            image: require("@/assets/tv3.png")
+          },
+          {
+            title: 'Slide 4',
+            image: require("@/assets/tv4.png")
+          },  
+          {
+            title: 'Slide 5',
+            image: require("@/assets/tv5.png")
+          },
+          {
+            title: 'Slide 6',
+            image: require("@/assets/tv6.png")
+          },
+          {
+            title: 'Slide 7',
+            image: require("@/assets/tv7.png")
+          },
+          {
+            title: 'Slide 8',
+            image: require("@/assets/tv8.png")
+          },
+          {
+            title: 'Slide 9',
+            image: require("@/assets/tv9.png")
+          },
+          {
+            title: 'Slide 10',
+            image: require("@/assets/tv10.png")
+          },
+          {
+            title: 'Slide 11',
+            image: require("@/assets/tv11.png")
+          },
+          {
+            title: 'Slide 12',
+            image: require("@/assets/tv12.png")
+          }
+        ],
+        items4: [{
+            alt: 'Slide 1',
+            title: 'Slide 1',
+            image: require("@/assets/m1.png"),
+          },
+          {
+            title: 'Slide 2',
+            image: require("@/assets/m2.png")
+          },
+          {
+            title: 'Slide 3',
+            image: require("@/assets/m3.png")
+          },
+          {
+            title: 'Slide 4',
+            image: require("@/assets/m4.png")
+          },  
+          {
+            title: 'Slide 5',
+            image: require("@/assets/m5.png")
+          },
+          {
+            title: 'Slide 6',
+            image: require("@/assets/m6.png")
+          }
+        ],
+        items5: [{
+            alt: 'Slide 1',
+            title: 'Slide 1',
+            image: require("@/assets/o1.png"),
+          },
+          {
+            title: 'Slide 2',
+            image: require("@/assets/o2.png")
+          },
+          {
+            title: 'Slide 3',
+            image: require("@/assets/o3.png")
+          },
+          {
+            title: 'Slide 4',
+            image: require("@/assets/o4.png")
+          },  
+          {
+            title: 'Slide 5',
+            image: require("@/assets/o5.png")
+          },
+          {
+            title: 'Slide 6',
+            image: require("@/assets/o6.png")
+          }
+        ]
+        
+      }
+    },
+    methods: {
+      onClickImg() {
+        console.log("Hurrrayy");
+      }
+    }
+  }
+
 </script>
 
 <style>
+  html,
+  body {
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #141414;
+    color: #F3F3F3;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    line-height: 1.4;
+  }
 
-html, body {
-  width: 100vw;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  background-color: #141414;
-  color: #F3F3F3;
-  font-family: Arial, Helvetica, sans-serif;
-  box-sizing: border-box;
-  line-height: 1.4;
-}
+  img {
+    max-width: 100%;
+  }
 
-img {
-  max-width: 100%;
-}
+  h1 {
+    padding-top: 60px;
+  }
 
-h1 {
-  padding-top: 60px;  
-}
+  .wrapper {
+    margin: 0;
+    padding: 0;
+  }
 
-.wrapper {
-  margin: 0;
-  padding: 0;
-}
+  /* MAIN CONTIANER */
+  .main-container {
+    padding: 50px;
+  }
 
-/* HEADER */
-header {
-  padding: 20px 20px 0 20px;
-  position: fixed;
-  top: 0;
-  display: grid;  
-  grid-gap:5px;
-  grid-template-columns: 1fr 4fr 1fr;
-  grid-template-areas: 
-   "nt mn mn sb . . . "; 
-  background-color: #141414;
-  width: 100%;
-  margin-bottom: 0px;  
-}
+  .box {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(6, minmax(100px, 1fr));
+  }
 
-.netflixLogo {
-  grid-area: nt;
-  object-fit: cover;
-  width: 100px;
-  max-height: 100%;
-  padding-left: 30px;
-  padding-top: 0px;  
-}
+  .box a {
+    transition: transform .3s;
+  }
 
-.netflixLogo img {  
-  height: 35px;     
-}
+  .box a:hover {
+    transition: transform .3s;
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
 
-#logo {
-  color: #E50914;  
-  margin: 0; 
-  padding: 0; 
-}
+  .box img {
+    border-radius: 2px;
+  }
 
+  /* LINKS */
+  .link {
+    padding: 50px;
+  }
 
-.main-nav {
-  grid-area: mn;
-  padding: 0 30px 0 20px;
-}
+  .sub-links ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+  }
 
-.main-nav a {
-  color: #F3F3F3;
-  text-decoration: none;
-  margin: 5px;  
-}
+  .sub-links a {
+    color: #686868;
+    text-decoration: none;
+  }
 
-.main-nav a:hover {
-  color: #686868;
-}
+  .sub-links a:hover {
+    color: #686868;
+    text-decoration: underline;
+  }
 
-.sub-nav {
-  grid-area: sb;
-  padding: 0 40px 0 40px;
-}
+  .logos a {
+    padding: 10px;
+  }
 
-.sub-nav a {
-  color: #F3F3F3;
-  text-decoration: none;
-  margin: 5px;
-}
-
-.sub-nav a:hover {
-  color: #686868;
-}
+  .logo {
+    color: #686868;
+  }
 
 
-/* MAIN CONTIANER */
-.main-container {
-  padding: 50px;
-}
-
-.box {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(6, minmax(100px, 1fr));
-}
-
-.box a {
-  transition: transform .3s;  
-}
-
-.box a:hover {
-  transition: transform .3s;
-  -ms-transform: scale(1.2);
-  -webkit-transform: scale(1.2);  
-  transform: scale(1.2);
-}
-
-.box img {
-  border-radius: 2px;
-}
-
-/* LINKS */
-.link {
-  padding: 50px;
-}
-
-.sub-links ul {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.sub-links a {
-  color: #686868;
-  text-decoration: none;
-}
-
-.sub-links a:hover {
-  color: #686868;
-  text-decoration: underline;
-}
-
-.logos a{
-  padding: 10px;
-}
-
-.logo {
-  color: #686868;
-}
-
-
-/* FOOTER */
-footer {
-  padding: 20px;
-  text-align: center;
-  color: #686868;
-  margin: 10px;
-}
+  /* FOOTER */
+  footer {
+    padding: 20px;
+    text-align: center;
+    color: #686868;
+    margin: 10px;
+  }
 
 </style>
