@@ -10,7 +10,10 @@
         <a href="#originals">Originals</a>      
       </nav>
       <nav class="sub-nav">
-        <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
+        <!-- <form action="" class="display: inline;"> -->
+          <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
+          <input type="text" placeholder="Search">
+        <!-- </form> -->
         <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
         <a href="#">Account</a>        
       </nav>      

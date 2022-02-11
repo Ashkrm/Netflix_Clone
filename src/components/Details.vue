@@ -3,7 +3,7 @@
     <img :src="responseObj.Poster" alt="">
     <h2>{{ responseObj.Title }}</h2>
     <br>
-    <div>
+    <div style="padding-right: 400px">
       <div style="font-size: 20px">
         <span>{{ responseObj.imdbRating }}</span>
         <span class="rated">{{ responseObj.Rated }}</span>
@@ -43,7 +43,7 @@
     },
     methods: {
       callAPI() {
-        axios.get('https://www.omdbapi.com/?i=' + this.id + '&apikey=7dfe4eee')
+        axios.get(`https://www.omdbapi.com/?i=${this.id}&apikey=7dfe4eee`)
           .then(response => {
             console.log(response.data)
             this.responseObj = response.data
@@ -74,7 +74,6 @@
 
   .rated {
     border: 1px solid;
-    border-radius: 3px;
     padding: 0 5px 0 5px;
     margin: 0 10px 0 10px;
   }
@@ -82,11 +81,11 @@
   .button {
     border: 1px solid white;
     color: rgb(207, 4, 4);
-    padding: 15px 15px;
+    padding: 10px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 32px;
+    font-size: 24px;
   }
 
 </style>

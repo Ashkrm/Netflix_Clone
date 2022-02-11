@@ -1,22 +1,21 @@
 <template>
   <div>
     <section class="main-container">
-      <div class="location" id="home">
-        <h1 id="popular"><router-link to="/details/tt1856010" target="_blank">Popular on Netflix</router-link></h1>
-        <section>
-          <!-- @click="onClickImg($event)" -->
-          <router-link to="/details/tt1856010" target="_blank"><b-carousel-list v-model="values" :data="items1" :arrow="arrow" :arrow-hover="arrowHover"
-            :items-to-show="perList" :items-to-list="increment">
-            
-          </b-carousel-list></router-link>
-        </section>
-      </div>
-         
+      <h1 id="popular">Popular on Netflix</h1>
+      <section>
+        <!-- @click="onClickImg($event)" -->
+        <b-carousel-list v-model="values" :data="items1" :arrow="arrow" :arrow-hover="arrowHover"
+          :items-to-show="perList" :items-to-list="increment" >
+          <template #item="list">
+            <movie-card :id="list.title" :imgSrc="list.image" class="movie-cards" />
+          </template>
+        </b-carousel-list>  
+      </section>
+
       <h1 id="trending">Trending Now</h1>
       <section>
         <b-carousel-list v-model="values" :data="items2" :arrow="arrow" :arrow-hover="arrowHover"
           :items-to-show="perList" :items-to-list="increment" />
-
       </section>
 
       <h1 id="tvShows">TV Shows</h1>
@@ -69,7 +68,11 @@
 </template>
 
 <script>
+  import MovieCard from './MovieCard.vue'
   export default ({
+    components: {
+      MovieCard
+    },
     data() {
       return {
         arrow: true,
@@ -79,51 +82,51 @@
         increment: 6,
         items1: [{
             alt: 'Slide 1',
-            title: 'Slide 1',
+            title: 'tt6422066',
             image: require("@/assets/p1.png"),
           },
           {
-            title: 'Slide 2',
+            title: 'tt4878326',
             image: require("@/assets/p2.png")
           },
           {
-            title: 'Slide 3',
+            title: 'tt4680240',
             image: require("@/assets/p3.png")
           },
           {
-            title: 'Slide 4',
+            title: 'tt0413573',
             image: require("@/assets/p4.png")
           },
           {
-            title: 'Slide 5',
+            title: 'tt1023481',
             image: require("@/assets/p5.png")
           },
           {
-            title: 'Slide 6',
+            title: 'tt7850154',
             image: require("@/assets/p6.png")
           },
           {
-            title: 'Slide 7',
+            title: 'tt1837492',
             image: require("@/assets/p7.png")
           },
           {
-            title: 'Slide 8',
+            title: 'tt0388644',
             image: require("@/assets/p8.png")
           },
           {
-            title: 'Slide 9',
+            title: 'tt1877514',
             image: require("@/assets/p9.png")
           },
           {
-            title: 'Slide 10',
+            title: 'tt0475944',
             image: require("@/assets/p10.png")
           },
           {
-            title: 'Slide 11',
+            title: 'tt5269594',
             image: require("@/assets/p11.png")
           },
           {
-            title: 'Slide 12',
+            title: 'tt5420376',
             image: require("@/assets/p12.png")
           }
         ],
@@ -257,15 +260,10 @@
         ],
       }
     },
-
     methods: {
-      onClickImg(event) {
-        console.log("Hurrrayy");
-        console.log(event);
-      },
+
     }
   })
-
 </script>
 
 <style>
@@ -308,4 +306,5 @@
   .logo {
     color: #686868;
   }
+
 </style>
