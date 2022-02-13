@@ -7,7 +7,8 @@ import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
-import {routes} from './routes'
+import { routes } from './routes'
+import { store } from './store/store'
 
 
 Vue.use(VueRouter)
@@ -25,6 +26,7 @@ Vue.component('app-footer', Footer)
 
 new Vue({
   el: '#app',
+  store,
   router,
   render: h => h(App),
 })

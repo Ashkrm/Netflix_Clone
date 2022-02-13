@@ -20,12 +20,11 @@
         <button class="button"><i class="fas fa-play"></i> Play</button>
       </a>
     </div>
-    <!-- <p>{{ responseObj }}</p> -->
   </div>
 </template>
 
 <script>
-  import axios from 'axios';
+  import MovieDetailsService from '../services/MovieDetailsService'
   export default {
     data() {
       return {
@@ -39,17 +38,12 @@
       }
     },
     created() {
-      this.callAPI()
-    },
-    methods: {
-      callAPI() {
-        axios.get(`https://www.omdbapi.com/?i=${this.id}&apikey=7dfe4eee`)
-          .then(response => {
-            console.log(response.data)
-            this.responseObj = response.data
-          })
-          .catch(err => console.log(err))
-      }
+      var myMovieDetails = new MovieDetailsService()
+      myMovieDetails.getMovieDetails(this.id)
+        .then(response => {
+          this.responseObj = response.data
+        })
+        .catch(err => {console.log(err)})
     }
   }
 

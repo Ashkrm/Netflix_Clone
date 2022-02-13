@@ -3,39 +3,80 @@
     <section class="main-container">
       <h1 id="popular">Popular on Netflix</h1>
       <section>
-        <!-- @click="onClickImg($event)" -->
-        <b-carousel-list v-model="values" :data="items1" :arrow="arrow" :arrow-hover="arrowHover"
-          :items-to-show="perList" :items-to-list="increment" >
-          <template #item="list">
-            <movie-card :id="list.title" :imgSrc="list.image" class="movie-cards" />
+        <b-carousel-list v-model="values" :data="shows" :arrow="arrow" :arrow-hover="arrowHover"
+          :items-to-show="perList" :items-to-list="increment">
+          <template #item="show">
+            <movie-card :id="show.imdbID" :imgSrc="show.poster" />
           </template>
-        </b-carousel-list>  
+        </b-carousel-list>
       </section>
 
       <h1 id="trending">Trending Now</h1>
+      <div class="m-card">
+        <a href=""><img src="../assets/t1.png" alt=""></a>
+        <a href=""><img src="../assets/t2.png" alt=""></a>
+        <a href=""><img src="../assets/t3.png" alt=""></a>
+        <a href=""><img src="../assets/t4.png" alt=""></a>
+        <a href=""><img src="../assets/t5.png" alt=""></a>
+        <a href=""><img src="../assets/t6.png" alt=""></a>
+      </div>
+
+      <h1 id="tvShows">TV Shows</h1>
+      <div class="m-card">
+        <a href=""><img src="../assets/tv1.png" alt=""></a>
+        <a href=""><img src="../assets/tv2.png" alt=""></a>
+        <a href=""><img src="../assets/tv3.png" alt=""></a>
+        <a href=""><img src="../assets/tv4.png" alt=""></a>
+        <a href=""><img src="../assets/tv5.png" alt=""></a>
+        <a href=""><img src="../assets/tv6.png" alt=""></a>             
+      </div>
+      
+
+      <h1 id="movies">Blockbuster Action & Adventure</h1>
+      <div class="m-card">
+        <a href=""><img src="../assets/m1.png" alt=""></a>
+        <a href=""><img src="../assets/m2.png" alt=""></a>
+        <a href=""><img src="../assets/m3.png" alt=""></a>
+        <a href=""><img src="../assets/m4.png" alt=""></a>
+        <a href=""><img src="../assets/m5.png" alt=""></a>
+        <a href=""><img src="../assets/m6.png" alt=""></a>                
+      </div>
+
+      <h1 id="originals">Netflix Originals</h1>
+      <div class="m-card">
+        <a href=""><img src="../assets/o1.png" alt=""></a>
+        <a href=""><img src="../assets/o2.png" alt=""></a>
+        <a href=""><img src="../assets/o3.png" alt=""></a>
+        <a href=""><img src="../assets/o4.png" alt=""></a>
+        <a href=""><img src="../assets/o5.png" alt=""></a>
+        <a href=""><img src="../assets/o6.png" alt=""></a>                
+      </div>
+
+      <!-- <h1 id="trending">Trending Now</h1>
       <section>
-        <b-carousel-list v-model="values" :data="items2" :arrow="arrow" :arrow-hover="arrowHover"
+        <b-carousel-list v-model="values" :data="items3" :arrow="arrow" :arrow-hover="arrowHover"
           :items-to-show="perList" :items-to-list="increment" />
       </section>
 
       <h1 id="tvShows">TV Shows</h1>
       <section>
-        <b-carousel-list v-model="values" :data="items3" :arrow="arrow" :arrow-hover="arrowHover"
+        <b-carousel-list v-model="values" :data="items2" :arrow="arrow" :arrow-hover="arrowHover"
           :items-to-show="perList" :items-to-list="increment" />
       </section>
 
 
       <h1 id="movies">Blockbuster Action & Adventure</h1>
       <section>
-        <b-carousel-list v-model="values" :data="items4" :arrow="arrow" :arrow-hover="arrowHover"
+        <b-carousel-list v-model="values" :data="items1
+        " :arrow="arrow" :arrow-hover="arrowHover"
           :items-to-show="perList" :items-to-list="increment" />
       </section>
 
       <h1 id="originals">Netflix Originals</h1>
       <section>
-        <b-carousel-list v-model="values" :data="items5" :arrow="arrow" :arrow-hover="arrowHover"
+        <b-carousel-list v-model="values" :data="items4" :arrow="arrow" :arrow-hover="arrowHover"
           :items-to-show="perList" :items-to-list="increment" />
-      </section>
+      </section> -->
     </section>
     <!-- END OF MAIN CONTAINER -->
 
@@ -72,6 +113,11 @@
   export default ({
     components: {
       MovieCard
+    },
+    computed: {
+      shows() {
+        return this.$store.state.movieList.shows;
+      }
     },
     data() {
       return {
@@ -133,32 +179,6 @@
         items2: [{
             alt: 'Slide 1',
             title: 'Slide 1',
-            image: require("@/assets/t1.png"),
-          },
-          {
-            title: 'Slide 2',
-            image: require("@/assets/t2.png")
-          },
-          {
-            title: 'Slide 3',
-            image: require("@/assets/t3.png")
-          },
-          {
-            title: 'Slide 4',
-            image: require("@/assets/t4.png")
-          },
-          {
-            title: 'Slide 5',
-            image: require("@/assets/t5.png")
-          },
-          {
-            title: 'Slide 6',
-            image: require("@/assets/t6.png")
-          }
-        ],
-        items3: [{
-            alt: 'Slide 1',
-            title: 'Slide 1',
             image: require("@/assets/tv1.png"),
           },
           {
@@ -206,7 +226,7 @@
             image: require("@/assets/tv12.png")
           }
         ],
-        items4: [{
+        items3: [{
             alt: 'Slide 1',
             title: 'Slide 1',
             image: require("@/assets/m1.png"),
@@ -232,7 +252,7 @@
             image: require("@/assets/m6.png")
           }
         ],
-        items5: [{
+        items4: [{
             alt: 'Slide 1',
             title: 'Slide 1',
             image: require("@/assets/o1.png"),
@@ -259,21 +279,51 @@
           }
         ],
       }
-    },
-    methods: {
-
     }
   })
+
 </script>
 
 <style>
-  /* MAIN CONTIANER */
   h1 {
     padding-top: 60px;
   }
 
   .main-container {
     padding: 50px;
+  }
+
+  .m-card {
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(100px, 1fr));
+  }
+
+  img {
+    padding-right : 30px;
+    transition: transform .3s;
+  }
+
+  img:hover {
+    transition: transform .3s;
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  .carousel-arrow .icon.has-icons-right {
+    right: 3rem;
+  }
+
+  .carousel-arrow .icon {
+    background-color: darkgray;
+    color: white;
+    border: 1px solid white;
+  }
+
+  .carousel-arrow .icon:hover {
+    border: 1px solid rgb(197, 1, 1);;
+    color: rgb(197, 1, 1);
   }
 
   /* LINKS */

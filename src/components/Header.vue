@@ -39,20 +39,20 @@ export default ({
    "nt mn mn sb . . . "; 
   background-color: #141414;
   width: 100%;
-  margin-bottom: 0px;  
+  margin-bottom: 0px; 
 }
 
 .netflixLogo {
   grid-area: nt;
   object-fit: cover;
-  width: 100%;
+  width: 180px;
   max-height: 100%;
   padding-left: 30px;
   padding-top: 0px;  
 }
 
 .netflixLogo img {  
-  height: 35px;     
+  width: 100%;     
 }
 
 #logo {

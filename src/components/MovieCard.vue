@@ -1,5 +1,7 @@
 <template>
-    <img :src="imgSrc" alt="" @click="routerFunction()">
+  <div class="crop">
+    <img :src="require(`@/assets/${imgSrc}`)" alt="" @click="routerFunction()">
+	</div>
 </template>
 
 <script>
@@ -14,6 +16,6 @@ export default ({
 })
 </script>
 
-<style scoped>
+<style >
 
 </style>
