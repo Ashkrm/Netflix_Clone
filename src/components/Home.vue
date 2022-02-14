@@ -13,70 +13,32 @@
 
       <h1 id="trending">Trending Now</h1>
       <div class="m-card">
-        <a href=""><img src="../assets/t1.png" alt=""></a>
-        <a href=""><img src="../assets/t2.png" alt=""></a>
-        <a href=""><img src="../assets/t3.png" alt=""></a>
-        <a href=""><img src="../assets/t4.png" alt=""></a>
-        <a href=""><img src="../assets/t5.png" alt=""></a>
-        <a href=""><img src="../assets/t6.png" alt=""></a>
+        <div v-for="item in items1" :key="item">
+          <router-link :to="item.imdbID" target='_blank'><img :src="item.src" alt=""></router-link>
+        </div>
       </div>
 
       <h1 id="tvShows">TV Shows</h1>
       <div class="m-card">
-        <a href=""><img src="../assets/tv1.png" alt=""></a>
-        <a href=""><img src="../assets/tv2.png" alt=""></a>
-        <a href=""><img src="../assets/tv3.png" alt=""></a>
-        <a href=""><img src="../assets/tv4.png" alt=""></a>
-        <a href=""><img src="../assets/tv5.png" alt=""></a>
-        <a href=""><img src="../assets/tv6.png" alt=""></a>             
+        <div v-for="item in items2" :key="item">
+          <router-link :to="item.imdbID" target='_blank'><img :src="item.src" alt=""></router-link>
+        </div>            
       </div>
       
 
       <h1 id="movies">Blockbuster Action & Adventure</h1>
       <div class="m-card">
-        <a href=""><img src="../assets/m1.png" alt=""></a>
-        <a href=""><img src="../assets/m2.png" alt=""></a>
-        <a href=""><img src="../assets/m3.png" alt=""></a>
-        <a href=""><img src="../assets/m4.png" alt=""></a>
-        <a href=""><img src="../assets/m5.png" alt=""></a>
-        <a href=""><img src="../assets/m6.png" alt=""></a>                
+        <div v-for="item in items3" :key="item">
+          <router-link :to="item.imdbID" target='_blank'><img :src="item.src" alt=""></router-link>
+        </div>               
       </div>
 
       <h1 id="originals">Netflix Originals</h1>
       <div class="m-card">
-        <a href=""><img src="../assets/o1.png" alt=""></a>
-        <a href=""><img src="../assets/o2.png" alt=""></a>
-        <a href=""><img src="../assets/o3.png" alt=""></a>
-        <a href=""><img src="../assets/o4.png" alt=""></a>
-        <a href=""><img src="../assets/o5.png" alt=""></a>
-        <a href=""><img src="../assets/o6.png" alt=""></a>                
+        <div v-for="item in items4" :key="item">
+          <router-link :to="item.imdbID" target='_blank'><img :src="item.src" alt=""></router-link>
+        </div>               
       </div>
-
-      <!-- <h1 id="trending">Trending Now</h1>
-      <section>
-        <b-carousel-list v-model="values" :data="items3" :arrow="arrow" :arrow-hover="arrowHover"
-          :items-to-show="perList" :items-to-list="increment" />
-      </section>
-
-      <h1 id="tvShows">TV Shows</h1>
-      <section>
-        <b-carousel-list v-model="values" :data="items2" :arrow="arrow" :arrow-hover="arrowHover"
-          :items-to-show="perList" :items-to-list="increment" />
-      </section>
-
-
-      <h1 id="movies">Blockbuster Action & Adventure</h1>
-      <section>
-        <b-carousel-list v-model="values" :data="items1
-        " :arrow="arrow" :arrow-hover="arrowHover"
-          :items-to-show="perList" :items-to-list="increment" />
-      </section>
-
-      <h1 id="originals">Netflix Originals</h1>
-      <section>
-        <b-carousel-list v-model="values" :data="items4" :arrow="arrow" :arrow-hover="arrowHover"
-          :items-to-show="perList" :items-to-list="increment" />
-      </section> -->
     </section>
     <!-- END OF MAIN CONTAINER -->
 
@@ -90,18 +52,7 @@
       </div>
       <div class="sub-links">
         <ul>
-          <li><a href="#">Audio and Subtitles</a></li>
-          <li><a href="#">Audio Description</a></li>
-          <li><a href="#">Help Center</a></li>
-          <li><a href="#">Gift Cards</a></li>
-          <li><a href="#">Media Center</a></li>
-          <li><a href="#">Investor Relations</a></li>
-          <li><a href="#">Jobs</a></li>
-          <li><a href="#">Terms of Use</a></li>
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Legal Notices</a></li>
-          <li><a href="#">Corporate Information</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li v-for="link in links" :key="link"><a href="#">{{ link }}</a></li>
         </ul>
       </div>
     </section>
@@ -110,6 +61,7 @@
 
 <script>
   import MovieCard from './MovieCard.vue'
+  import {items1, items2, items3, items4, links} from '../common/constants'
   export default ({
     components: {
       MovieCard
@@ -126,158 +78,11 @@
         values: 0,
         perList: 6,
         increment: 6,
-        items1: [{
-            alt: 'Slide 1',
-            title: 'tt6422066',
-            image: require("@/assets/p1.png"),
-          },
-          {
-            title: 'tt4878326',
-            image: require("@/assets/p2.png")
-          },
-          {
-            title: 'tt4680240',
-            image: require("@/assets/p3.png")
-          },
-          {
-            title: 'tt0413573',
-            image: require("@/assets/p4.png")
-          },
-          {
-            title: 'tt1023481',
-            image: require("@/assets/p5.png")
-          },
-          {
-            title: 'tt7850154',
-            image: require("@/assets/p6.png")
-          },
-          {
-            title: 'tt1837492',
-            image: require("@/assets/p7.png")
-          },
-          {
-            title: 'tt0388644',
-            image: require("@/assets/p8.png")
-          },
-          {
-            title: 'tt1877514',
-            image: require("@/assets/p9.png")
-          },
-          {
-            title: 'tt0475944',
-            image: require("@/assets/p10.png")
-          },
-          {
-            title: 'tt5269594',
-            image: require("@/assets/p11.png")
-          },
-          {
-            title: 'tt5420376',
-            image: require("@/assets/p12.png")
-          }
-        ],
-        items2: [{
-            alt: 'Slide 1',
-            title: 'Slide 1',
-            image: require("@/assets/tv1.png"),
-          },
-          {
-            title: 'Slide 2',
-            image: require("@/assets/tv2.png")
-          },
-          {
-            title: 'Slide 3',
-            image: require("@/assets/tv3.png")
-          },
-          {
-            title: 'Slide 4',
-            image: require("@/assets/tv4.png")
-          },
-          {
-            title: 'Slide 5',
-            image: require("@/assets/tv5.png")
-          },
-          {
-            title: 'Slide 6',
-            image: require("@/assets/tv6.png")
-          },
-          {
-            title: 'Slide 7',
-            image: require("@/assets/tv7.png")
-          },
-          {
-            title: 'Slide 8',
-            image: require("@/assets/tv8.png")
-          },
-          {
-            title: 'Slide 9',
-            image: require("@/assets/tv9.png")
-          },
-          {
-            title: 'Slide 10',
-            image: require("@/assets/tv10.png")
-          },
-          {
-            title: 'Slide 11',
-            image: require("@/assets/tv11.png")
-          },
-          {
-            title: 'Slide 12',
-            image: require("@/assets/tv12.png")
-          }
-        ],
-        items3: [{
-            alt: 'Slide 1',
-            title: 'Slide 1',
-            image: require("@/assets/m1.png"),
-          },
-          {
-            title: 'Slide 2',
-            image: require("@/assets/m2.png")
-          },
-          {
-            title: 'Slide 3',
-            image: require("@/assets/m3.png")
-          },
-          {
-            title: 'Slide 4',
-            image: require("@/assets/m4.png")
-          },
-          {
-            title: 'Slide 5',
-            image: require("@/assets/m5.png")
-          },
-          {
-            title: 'Slide 6',
-            image: require("@/assets/m6.png")
-          }
-        ],
-        items4: [{
-            alt: 'Slide 1',
-            title: 'Slide 1',
-            image: require("@/assets/o1.png"),
-          },
-          {
-            title: 'Slide 2',
-            image: require("@/assets/o2.png")
-          },
-          {
-            title: 'Slide 3',
-            image: require("@/assets/o3.png")
-          },
-          {
-            title: 'Slide 4',
-            image: require("@/assets/o4.png")
-          },
-          {
-            title: 'Slide 5',
-            image: require("@/assets/o5.png")
-          },
-          {
-            title: 'Slide 6',
-            image: require("@/assets/o6.png")
-          }
-        ],
+        items1,
+        items2,
+        items3,
+        items4, 
+        links
       }
     }
   })
@@ -286,7 +91,7 @@
 
 <style>
   h1 {
-    padding-top: 60px;
+    padding: 40px 0 16px 0;
   }
 
   .main-container {
@@ -329,6 +134,7 @@
   /* LINKS */
   .link {
     padding: 50px;
+    text-align: center;
   }
 
   .sub-links ul {
@@ -347,6 +153,10 @@
   .sub-links a:hover {
     color: #686868;
     text-decoration: underline;
+  }
+
+  .logos {
+    margin-bottom: 1.5rem;
   }
 
   .logos a {
