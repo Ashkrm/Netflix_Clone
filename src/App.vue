@@ -14,15 +14,15 @@
 </template>
 
 <script>
-  import MovieListService from './services/MovieListService'
+  import { mapActions } from 'vuex';
   export default {
     created() {
-      var myMovieList = new MovieListService()
-      myMovieList.getMovieList()
-        .then(response => {
-          this.$store.state.movieList = response.data
-        })
-        .catch(err => console.log(err))
+      this.setMovieList()
+    },
+    methods: {
+      ...mapActions([
+        'setMovieList'
+      ])
     }
   }
 

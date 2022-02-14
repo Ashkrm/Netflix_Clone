@@ -16,6 +16,8 @@ export default ({
 })
 </script>
 
-<style >
-
+<style scoped>
+  .crop:hover {
+    cursor: pointer;
+  }
 </style>

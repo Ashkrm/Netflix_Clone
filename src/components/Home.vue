@@ -3,7 +3,7 @@
     <section class="main-container">
       <h1 id="popular">Popular on Netflix</h1>
       <section>
-        <b-carousel-list v-model="values" :data="shows" :arrow="arrow" :arrow-hover="arrowHover"
+        <b-carousel-list v-model="values" :data="getShows" :arrow="arrow" :arrow-hover="arrowHover"
           :items-to-show="perList" :items-to-list="increment">
           <template #item="show">
             <movie-card :id="show.imdbID" :imgSrc="show.poster" />
@@ -13,14 +13,14 @@
 
       <h1 id="trending">Trending Now</h1>
       <div class="m-card">
-        <div v-for="item in items1" :key="item">
+        <div v-for="item in items1" :key="item.imdbID">
           <router-link :to="item.imdbID" target='_blank'><img :src="item.src" alt=""></router-link>
         </div>
       </div>
 
       <h1 id="tvShows">TV Shows</h1>
       <div class="m-card">
-        <div v-for="item in items2" :key="item">
+        <div v-for="item in items2" :key="item.imdbID">
           <router-link :to="item.imdbID" target='_blank'><img :src="item.src" alt=""></router-link>
         </div>            
       </div>
@@ -28,14 +28,14 @@
 
       <h1 id="movies">Blockbuster Action & Adventure</h1>
       <div class="m-card">
-        <div v-for="item in items3" :key="item">
+        <div v-for="item in items3" :key="item.imdbID">
           <router-link :to="item.imdbID" target='_blank'><img :src="item.src" alt=""></router-link>
         </div>               
       </div>
 
       <h1 id="originals">Netflix Originals</h1>
       <div class="m-card">
-        <div v-for="item in items4" :key="item">
+        <div v-for="item in items4" :key="item.imdbID">
           <router-link :to="item.imdbID" target='_blank'><img :src="item.src" alt=""></router-link>
         </div>               
       </div>
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
   import MovieCard from './MovieCard.vue'
   import {items1, items2, items3, items4, links} from '../common/constants'
   export default ({
@@ -67,9 +68,9 @@
       MovieCard
     },
     computed: {
-      shows() {
-        return this.$store.state.movieList.shows;
-      }
+      ...mapGetters([
+        'getShows'
+      ])
     },
     data() {
       return {
