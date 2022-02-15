@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="netflixLogo">
+    <div class="netflix-logo">
       <a id="logo" href="#home"><img src="../assets/logo.png" alt="Logo Image"></a>
     </div>
     <div class="main-nav">
@@ -45,7 +45,7 @@
     margin-bottom: 0px;
   }
 
-  .netflixLogo {
+  .netflix-logo {
     grid-area: nt;
     object-fit: cover;
     width: 180px;
@@ -54,7 +54,7 @@
     padding-top: 0px;
   }
 
-  .netflixLogo img {
+  .netflix-logo img {
     margin-top: -10px;
     width: 100%;
   }

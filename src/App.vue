@@ -29,8 +29,9 @@
 </script>
 
 <style>
-  html,
-  body {
+  .wrapper {
+    margin: 0;
+    padding: 0;
     width: 100vw;
     min-height: 100vh;
     margin: 0;
@@ -41,10 +42,5 @@
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
     line-height: 1.4;
-  }
-
-  .wrapper {
-    margin: 0;
-    padding: 0;
   }
 </style>
