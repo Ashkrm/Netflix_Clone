@@ -90,7 +90,7 @@
 
 </script>
 
-<style>
+<style scoped>
   h1 {
     padding: 40px 0 16px 0;
   }

@@ -43,11 +43,6 @@
     line-height: 1.4;
   }
 
-  img {
-    margin-top: -5px;
-    max-width: 100%;
-  }
-
   .wrapper {
     margin: 0;
     padding: 0;

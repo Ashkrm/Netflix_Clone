@@ -55,6 +55,7 @@
   }
 
   .netflixLogo img {
+    margin-top: -10px;
     width: 100%;
   }
 
