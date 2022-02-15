@@ -13,30 +13,30 @@
 
       <h1 id="trending">Trending Now</h1>
       <div class="m-card">
-        <div v-for="item in items1" :key="item.imdbID">
-          <router-link :to="item.imdbID" target='_blank'><img :src="item.src" alt=""></router-link>
+        <div v-for="item in trending" :key="item.imdbID">
+          <router-link :to="item.imdbID" target='_blank'><img :src="item.src" :alt="item.alt"></router-link>
         </div>
       </div>
 
       <h1 id="tvShows">TV Shows</h1>
       <div class="m-card">
-        <div v-for="item in items2" :key="item.imdbID">
-          <router-link :to="item.imdbID" target='_blank'><img :src="item.src" alt=""></router-link>
+        <div v-for="item in tvShows" :key="item.imdbID">
+          <router-link :to="item.imdbID" target='_blank'><img :src="item.src" :alt="item.alt"></router-link>
         </div>            
       </div>
       
 
       <h1 id="movies">Blockbuster Action & Adventure</h1>
       <div class="m-card">
-        <div v-for="item in items3" :key="item.imdbID">
-          <router-link :to="item.imdbID" target='_blank'><img :src="item.src" alt=""></router-link>
+        <div v-for="item in movies" :key="item.imdbID">
+          <router-link :to="item.imdbID" target='_blank'><img :src="item.src" :alt="item.alt"></router-link>
         </div>               
       </div>
 
       <h1 id="originals">Netflix Originals</h1>
-      <div class="m-card">
+      <div class="originals">
         <div v-for="item in items4" :key="item.imdbID">
-          <router-link :to="item.imdbID" target='_blank'><img :src="item.src" alt=""></router-link>
+          <router-link :to="item.imdbID" target='_blank'><img :src="item.src" :alt="item.alt"></router-link>
         </div>               
       </div>
     </section>
@@ -62,7 +62,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import MovieCard from './MovieCard.vue'
-  import {items1, items2, items3, items4, links} from '../common/constants'
+  import {trending, tvShows, movies, originals, links} from '../common/constants'
   export default ({
     components: {
       MovieCard
@@ -79,10 +79,10 @@
         values: 0,
         perList: 6,
         increment: 6,
-        items1,
-        items2,
-        items3,
-        items4, 
+        trending,
+        tvShows,
+        movies,
+        originals, 
         links
       }
     }
@@ -90,7 +90,7 @@
 
 </script>
 
-<style>
+<style scoped>
   h1 {
     padding: 40px 0 16px 0;
   }
