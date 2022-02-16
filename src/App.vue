@@ -1,21 +1,28 @@
 <template>
   <div class="wrapper">
-
-    <!-- HEADER -->
-    <app-header></app-header>
-    
-    <!-- Route Section -->
-    <router-view></router-view>
-
-    <!-- Footer -->
-    <app-footer></app-footer>
-
+    <b-loading :is-full-page="true" v-model="isLoading"></b-loading>
+    <div v-if="!checkLoading">
+      <!-- HEADER -->
+      <app-header ></app-header>
+      <!-- Route Section -->
+      <router-view ></router-view>
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
   </div>
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import {
+    mapActions,
+    mapGetters
+  } from 'vuex';
   export default {
+    data() {
+      return {
+        isLoading: true
+      }
+    },
     created() {
       this.setMovieList()
     },
@@ -23,6 +30,14 @@
       ...mapActions([
         'setMovieList'
       ])
+    },
+    computed: {
+      ...mapGetters([
+        'getShows'
+      ]),
+      checkLoading() {
+        return this.isLoading = (this.getShows && this.getShows.length>0)?false:true;
+      }
     }
   }
 
@@ -43,4 +58,5 @@
     box-sizing: border-box;
     line-height: 1.4;
   }
+
 </style>

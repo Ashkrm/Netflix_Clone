@@ -13,7 +13,7 @@
     <div class="sub-nav">
       <div class="search-box">
         <div class="dropdown is-active">
-          <b-dropdown can-close position="is-bottom-left" append-to-body aria-role="list" scrollable max-height="200"
+          <b-dropdown class="search-box-dropdown" can-close position="is-bottom-left" append-to-body aria-role="list" scrollable max-height="200"
             trap-focus>
             <template #trigger>
               <label class="search-btn" for="search">
@@ -21,7 +21,7 @@
               </label>
             </template>
             <b-dropdown-item custom aria-role="listitem">
-              <b-input v-model="searchTerm" id="search" placeholder="search" expanded @input="searchMovies" />
+              <b-input v-model="searchTerm" class="search-input" id="search" placeholder="search" expanded @input="searchMovies" />
             </b-dropdown-item>
             <b-dropdown-item v-for="item of searchMovies()" :key="item.imdbID" aria-role="listitem" @click="routeToDetails(item.imdbID)">
               {{item.title}}
@@ -39,10 +39,10 @@
             :icon-right="active ? 'menu-up' : 'menu-down'" />
         </template>
 
-        <b-dropdown-item class="has-background-black-bis" aria-role="listitem">My Profile<i class="fas fa-user"></i>
+        <b-dropdown-item aria-role="listitem">My Profile<i class="fas fa-user"></i>
         </b-dropdown-item>
-        <b-dropdown-item class="has-background-black-bis" aria-role="listitem">Help Center</b-dropdown-item>
-        <b-dropdown-item class="has-background-black-bis" aria-role="listitem">Sign Out</b-dropdown-item>
+        <b-dropdown-item aria-role="listitem">Help Center</b-dropdown-item>
+        <b-dropdown-item aria-role="listitem">Sign Out</b-dropdown-item>
       </b-dropdown>
     </div>
   </header>
@@ -59,7 +59,7 @@
         showList: []
       }
     },
-    async mounted() {
+    mounted() {
       this.showList = this.getShows
     },
     computed: {
@@ -221,15 +221,21 @@
   .button.is-dark:focus:not(:active) {
     box-shadow: none;
   }
+</style>
 
+
+<style lang="scss">
   .account-dropdown {
-    ::v-deep {
-      
-        .dropdown-content {
-          background-color: #141414;
-        }
-      
+    .dropdown-content {
+      background-color: #121212;
     }
   }
-
+  .search-box-dropdown {
+    .dropdown-content {
+      background-color: rgba(0, 0, 0, 0.6);
+      position: relative;
+      right: 50px;
+      top: -15px;
+    }
+  }
 </style>
