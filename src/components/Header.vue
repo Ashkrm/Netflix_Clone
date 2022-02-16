@@ -9,22 +9,85 @@
       <a href="#movies">Movies</a>
       <a href="#originals">Originals</a>
     </div>
+
     <div class="sub-nav">
-      <div class='search-box'>
-        <input class="search-text" type="text" placeholder="Search Anything">
-        <a href="#" class="search-btn">
-          <i class="fas fa-search"></i>
-        </a>
+      <div class="search-box">
+        <div class="dropdown is-active">
+          <b-dropdown can-close position="is-bottom-left" append-to-body aria-role="list" scrollable max-height="200"
+            trap-focus>
+            <template #trigger>
+              <!-- <input v-model="searchTerm" id="search" class="search-text dropdown-trigger" type="text"
+                placeholder="search"> -->
+                <label class="search-btn" for="search">
+            <i class="fas fa-search"></i>
+          </label>
+            </template>
+            <b-dropdown-item custom aria-role="listitem">
+              <b-input v-model="searchTerm" id="search" placeholder="search" expanded />
+            </b-dropdown-item>
+            <b-dropdown-item v-for="item of filteredData" :key="item" aria-role="listitem">{{item}}</b-dropdown-item>
+          </b-dropdown>
+          
+        </div>
       </div>
+
       <div class="notifications"><a href="#"><i class="fas fa-bell sub-nav-logo"></i></a></div>
-      <div class="account"><a href="#">Account</a> </div>
+
+      <b-dropdown aria-role="list">
+        <template #trigger="{ active }">
+          <b-button class="has-background-black-bis" label="Account" type="is-dark"
+            :icon-right="active ? 'menu-up' : 'menu-down'" />
+        </template>
+
+        <b-dropdown-item class="has-background-black-bis" aria-role="listitem">My Profile<i class="fas fa-user"></i>
+        </b-dropdown-item>
+        <b-dropdown-item class="has-background-black-bis" aria-role="listitem">Help Center</b-dropdown-item>
+        <b-dropdown-item class="has-background-black-bis" aria-role="listitem">Sign Out</b-dropdown-item>
+      </b-dropdown>
     </div>
   </header>
 </template>
 
 <script>
+  import {
+    mapGetters
+  } from 'vuex';
   export default ({
-
+    data() {
+      return {
+        searchTerm: '',
+        showList: [],
+        data: [
+          'Angular',
+          'Angular 2',
+          'Aurelia',
+          'Backbone',
+          'Ember',
+          'jQuery',
+          'Meteor',
+          'Node.js',
+          'Polymer',
+          'React',
+          'RxJS',
+          'Vue.js'
+        ],
+      }
+    },
+    async mounted() {
+      // setTimeout(() => {
+      //   this.showList = this.getShows
+      // }, 1000);
+      this.showList = this.getShows
+      console.log(showList)
+    },
+    computed: {
+      ...mapGetters([
+        'getShows'
+      ]),
+      filteredData() {
+        return this.data.filter((item) => item.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0);
+      }
+    }
   })
 
 </script>
@@ -79,75 +142,94 @@
     padding: 0 40px 0 40px;
   }
 
-  .sub-nav a {
-    color: #F3F3F3;
-    text-decoration: none;
-    
-  }
-
   .sub-nav a:hover {
     color: #686868;
   }
 
   .sub-nav div {
-    display:inline-block;
+    display: inline-block;
   }
 
-.search-box {
-  background: #2f3640;
-  height: 40px;
-  border-radius: 40px;
-}
+  .search-box {
+    background: #2f3640;
+    height: 40px;
+    border-radius: 40px;
+  }
 
-.search-box:hover > .search-text{
-  width: 240px;
-  padding: 0 6px;
-}
+  .search-btn:focus .search-text {
+    width: 240px;
+    padding: 0 6px;
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    font-weight: normal;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+  }
 
-.search-box:hover > .search-btn{
-  background: white;
-  color: black;
-  margin: 3px 6px 0 6px;
-  width: 34px;
-  height: 34px;
-}
+  .search-box:hover .search-btn {
+    background: white;
+    color: black;
+    margin: 3px 6px 0 6px;
+    width: 34px;
+    height: 34px;
+  }
 
-.search-btn {
-  color: #e84118;
-  float: right; 
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #2f3640;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.4s;
-  cursor: pointer;
-  text-decoration: none;
-  
-}
-.search-btn > i {
-  font-size: 30px;
-}
+  .search-btn {
+    color: #e84118;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
 
-.search-text {
-  border: none;
-  background: none;
-  outline: none;
-  float: left;
-  padding: 0;
-  color: white;
-  font-size: 16px;
-  font-weight: normal;
-  transition: 0.4s;
-  line-height: 40px;
-  width: 0px;
-}
+  }
 
-.notifications, .account {
-  position: relative;
-  top: -30%;
-  padding-left: 15px;
-}
+  .search-btn>i {
+    font-size: 30px;
+  }
+
+  .search-text {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    font-weight: normal;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+  }
+
+  .account {
+    padding-left: 16px;
+  }
+
+  .notifications {
+    position: relative;
+    top: 20%;
+    padding-left: 16px;
+  }
+
+  a {
+    color: white;
+  }
+
+  .button.is-dark:focus:not(:active) {
+    box-shadow: none;
+  }
+
 </style>
