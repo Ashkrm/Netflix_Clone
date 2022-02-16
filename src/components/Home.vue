@@ -34,7 +34,7 @@
       </div>
 
       <h1 id="originals">Netflix Originals</h1>
-      <div class="originals">
+      <div class="m-card">
         <div v-for="item in originals" :key="item.imdbID">
           <router-link :to="item.imdbID" target='_blank'><img :src="item.src" :alt="item.alt"></router-link>
         </div>               

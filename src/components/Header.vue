@@ -16,24 +16,24 @@
           <b-dropdown can-close position="is-bottom-left" append-to-body aria-role="list" scrollable max-height="200"
             trap-focus>
             <template #trigger>
-              <!-- <input v-model="searchTerm" id="search" class="search-text dropdown-trigger" type="text"
-                placeholder="search"> -->
-                <label class="search-btn" for="search">
-            <i class="fas fa-search"></i>
-          </label>
+              <label class="search-btn" for="search">
+                <i class="fas fa-search"></i>
+              </label>
             </template>
             <b-dropdown-item custom aria-role="listitem">
-              <b-input v-model="searchTerm" id="search" placeholder="search" expanded />
+              <b-input v-model="searchTerm" id="search" placeholder="search" expanded @input="searchMovies" />
             </b-dropdown-item>
-            <b-dropdown-item v-for="item of filteredData" :key="item" aria-role="listitem">{{item}}</b-dropdown-item>
+            <b-dropdown-item v-for="item of searchMovies()" :key="item.imdbID" aria-role="listitem" @click="routeToDetails(item.imdbID)">
+              {{item.title}}
+            </b-dropdown-item>
           </b-dropdown>
-          
+
         </div>
       </div>
 
       <div class="notifications"><a href="#"><i class="fas fa-bell sub-nav-logo"></i></a></div>
 
-      <b-dropdown aria-role="list">
+      <b-dropdown class="account-dropdown" aria-role="list">
         <template #trigger="{ active }">
           <b-button class="has-background-black-bis" label="Account" type="is-dark"
             :icon-right="active ? 'menu-up' : 'menu-down'" />
@@ -56,43 +56,33 @@
     data() {
       return {
         searchTerm: '',
-        showList: [],
-        data: [
-          'Angular',
-          'Angular 2',
-          'Aurelia',
-          'Backbone',
-          'Ember',
-          'jQuery',
-          'Meteor',
-          'Node.js',
-          'Polymer',
-          'React',
-          'RxJS',
-          'Vue.js'
-        ],
+        showList: []
       }
     },
     async mounted() {
-      // setTimeout(() => {
-      //   this.showList = this.getShows
-      // }, 1000);
       this.showList = this.getShows
-      console.log(showList)
     },
     computed: {
       ...mapGetters([
         'getShows'
-      ]),
-      filteredData() {
-        return this.data.filter((item) => item.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0);
+      ])
+    },
+    methods: {
+      searchMovies() {
+        return this.showList.filter((item) => item.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0);
+      },
+      routeToDetails(imdbID) {
+        const route = this.$router.resolve({
+          path: "/details/" + imdbID
+        });
+        window.open(route.href);
       }
     }
   })
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   header {
     padding: 20px 20px 0 20px;
     position: fixed;
@@ -230,6 +220,16 @@
 
   .button.is-dark:focus:not(:active) {
     box-shadow: none;
+  }
+
+  .account-dropdown {
+    ::v-deep {
+      
+        .dropdown-content {
+          background-color: #141414;
+        }
+      
+    }
   }
 
 </style>

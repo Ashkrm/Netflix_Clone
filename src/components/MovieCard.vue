@@ -6,7 +6,7 @@
       <button><i class="fas fa-check"></i></button>
       <button><i class="far fa-thumbs-up"></i></button>
       <button><i class="far fa-thumbs-down"></i></button>
-      <p>2h35m</p>
+      <p>2h15m</p>
       <p>Drama, Action</p>
     </div>
   </div>
