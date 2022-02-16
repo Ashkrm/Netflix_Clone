@@ -32,96 +32,96 @@ export const trending= [{
 
 export const tvShows=[{
     imdbID: '/details/tt1',
-    src: require("@/assets/tv1.png"),
+    src: require("@/assets/whas.jpg"),
     alt: 'Slide 1'
   },
   {
     imdbID: '/details/tt2',
-    src: require("@/assets/tv2.png"),
+    src: require("@/assets/wbd.jpg"),
     alt: 'Slide 2'
   },
   {
     imdbID: '/details/tt3',
-    src: require("@/assets/tv3.png"),
+    src: require("@/assets/uks.jpg"),
     alt: 'Slide 3'
   },
   {
     imdbID: '/details/tt4',
-    src: require("@/assets/tv4.png"),
+    src: require("@/assets/tk.jpg"),
     alt: 'Slide 4'
   },
   {
     imdbID: '/details/tt5',
-    src: require("@/assets/tv5.png"),
+    src: require("@/assets/s8.jpg"),
     alt: 'Slide 5'
   },
   {
     imdbID: '/details/tt6',
-    src: require("@/assets/tv6.png"),
+    src: require("@/assets/oitnb.jpg"),
     alt: 'Slide 6'
   }
 ]
 
 export const movies=[{
     imdbID: '/details/tt1',
-    src: require("@/assets/m1.png"),
+    src: require("@/assets/n.jpg"),
     alt: 'Slide 1'
   },
   {
     imdbID: '/details/tt2',
-    src: require("@/assets/m2.png"),
+    src: require("@/assets/mp.jpg"),
     alt: 'Slide 2'
   },
   {
     imdbID: '/details/tt3',
-    src: require("@/assets/m3.png"),
+    src: require("@/assets/mon.jpg"),
     alt: 'Slide 3'
   },
   {
     imdbID: '/details/tt4',
-    src: require("@/assets/m4.png"),
+    src: require("@/assets/mam.jpg"),
     alt: 'Slide 4'
   },
   {
     imdbID: '/details/tt5',
-    src: require("@/assets/m5.png"),
+    src: require("@/assets/l.jpg"),
     alt: 'Slide 5'
   },
   {
     imdbID: '/details/tt6',
-    src: require("@/assets/m6.png"),
+    src: require("@/assets/jj.jpg"),
     alt: 'Slide 6'
   }
 ]
 
 export const originals=[{
     imdbID: '/details/tt1',
-    src: require("@/assets/o1.png"),
+    src: require("@/assets/ad.jpg"),
     alt: 'Slide 1'
   },
   {
     imdbID: '/details/tt2',
-    src: require("@/assets/o2.png"),
+    src: require("@/assets/bh.jpg"),
     alt: 'Slide 2'
   },
   {
     imdbID: '/details/tt3',
-    src: require("@/assets/o3.png"),
+    src: require("@/assets/cdc.jpg"),
     alt: 'Slide 3'
   },
   {
     imdbID: '/details/tt4',
-    src: require("@/assets/o4.png"),
+    src: require("@/assets/dd.jpg"),
     alt: 'Slide 4'
   },
   {
     imdbID: '/details/tt5',
-    src: require("@/assets/o5.png"),
+    src: require("@/assets/f.jpg"),
     alt: 'Slide 5'
   },
   {
     imdbID: '/details/tt6',
-    src: require("@/assets/o6.png"),
+    src: require("@/assets/hg.jpg"),
     alt: 'Slide 6'
   }
 ]

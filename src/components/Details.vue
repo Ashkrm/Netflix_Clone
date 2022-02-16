@@ -1,38 +1,64 @@
 <template>
-  <div class="details">
-    <img :src="responseObj.Poster" alt="">
-    <h2>{{ responseObj.Title }}</h2>
-    <br>
-    <div style="padding-right: 400px">
-      <div style="font-size: 20px">
-        <span>{{ responseObj.imdbRating }}</span>
-        <span class="rated">{{ responseObj.Rated }}</span>
-        <span v-if='responseObj.Type == "series"'>{{ responseObj.totalSeasons }} Seasons</span>
-        <span v-else>{{ responseObj.Runtime }}</span>
+  <div>
+    <div class="details">
+      <img :src="responseObj.Poster" alt="MovieImage">
+      <h2>{{ responseObj.Title }}</h2>
+      <br>
+      <div style="padding-right: 400px">
+        <div style="font-size: 20px; color: gold;">
+          <span><i class="pr-1 fab fa-imdb"></i>{{ responseObj.imdbRating }}</span>
+          <span class="rated">{{ responseObj.Rated }}</span>
+          <span v-if='responseObj.Type == "series"'>{{ responseObj.totalSeasons }} Seasons</span>
+          <span v-else>{{ responseObj.Runtime }}</span>
+        </div>
+        <br>
+        <p style="font-size: 24px">{{ responseObj.Plot }}</p>
+        <br>
+        <table>
+          <tr>
+            <td>Director:</td>
+            <td>{{ responseObj.Director }}</td>
+          </tr>
+          <tr>
+            <td>Cast:</td>
+            <td>{{ responseObj.Actors }}</td>
+          </tr>
+          <tr>
+            <td>Genres:</td>
+            <td>{{ responseObj.Genre }}</td>
+          </tr>
+          <tr>
+            <td>Country:</td>
+            <td>{{ responseObj.Country }}</td>
+          </tr>
+          <tr>
+            <td>Language:</td>
+            <td>{{ responseObj.Language }}</td>
+          </tr>
+        </table>
+        <br>
       </div>
-      <br>
-      <p style="font-size: 24px">{{ responseObj.Plot }}</p>
-      <br>
-      <p>Starring: {{ responseObj.Actors }}</p>
-      <p>Genres: {{responseObj.Genre }}</p>
-      <br>
-      <a href="https://www.youtube.com" target="_blank">
-        <button class="button"><i class="fas fa-play"></i> Play</button>
-      </a>
-    <!-- </div>
-    <iframe src="https://www.youtube-nocookie.com/embed/m5_A0Wx0jU4?rel=0&amp;amp;controls=0&amp;amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe> 
-  </div> -->
     </div>
-  </div>  
+    <div class="trailer">
+      <figure class="image is-16by9">
+        <iframe class="has-ratio" width="64" height="36" :src='getTrailer' frameborder="0" allowfullscreen></iframe>
+      </figure>
+    </div>
+  </div>
 </template>
 
 <script>
+  import {
+    mapGetters
+  } from 'vuex';
   import MovieDetailsService from '../services/MovieDetailsService'
   export default {
     data() {
       return {
         id: this.$route.params.id,
-        responseObj: {}
+        responseObj: {},
+        shows: [],
+        show: []
       }
     },
     watch: {
@@ -46,7 +72,19 @@
         .then(response => {
           this.responseObj = response.data
         })
-        .catch(err => {console.log(err)})
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    computed: {
+      ...mapGetters([
+        'getShows'
+      ]),
+      getTrailer() {
+        this.shows = this.getShows;
+        this.show = this.shows.filter((item) => item.imdbID.toLowerCase().indexOf(this.id) >= 0);
+        return 'https://www.youtube-nocookie.com/embed/' + this.show[0].trailer
+      }
     }
   }
 
@@ -72,7 +110,7 @@
   .rated {
     border: 1px solid;
     padding: 0 5px 0 5px;
-    margin: 0 10px 0 10px;
+    margin: 0 60px 0 60px;
   }
 
   .button {
@@ -83,6 +121,20 @@
     text-decoration: none;
     display: inline-block;
     font-size: 24px;
+  }
+
+  tr {
+    padding-top: 5px;
+  }
+
+  td:first-child {
+    color: gray;
+    padding-right: 30px;
+  }
+
+  .trailer {
+    text-align: center;
+    padding: 20px 250px 0 250px;
   }
 
 </style>
