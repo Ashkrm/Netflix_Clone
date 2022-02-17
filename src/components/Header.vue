@@ -39,7 +39,7 @@
             :icon-right="active ? 'menu-up' : 'menu-down'" />
         </template>
 
-        <b-dropdown-item aria-role="listitem">My Profile<i class="fas fa-user"></i>
+        <b-dropdown-item aria-role="listitem">My Profile<i class="pl-1 fas fa-user"></i>
         </b-dropdown-item>
         <b-dropdown-item aria-role="listitem">Help Center</b-dropdown-item>
         <b-dropdown-item aria-role="listitem">Sign Out</b-dropdown-item>
@@ -225,7 +225,7 @@
 <style lang="scss">
   .account-dropdown {
     .dropdown-content {
-      background-color: #121212;
+      background-color: rgba(0, 0, 0, 0.6);
     }
   }
   .search-box-dropdown {

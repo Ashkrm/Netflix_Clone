@@ -17,7 +17,13 @@
     mapActions,
     mapGetters
   } from 'vuex';
+  import Header from '@/components/Header.vue'
+  import Footer from '@/components/Footer.vue'
   export default {
+    components: {
+      'app-header': Header,
+      'app-footer': Footer
+    },
     data() {
       return {
         isLoading: true
