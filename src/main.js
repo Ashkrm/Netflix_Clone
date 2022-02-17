@@ -7,7 +7,7 @@ import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
-import { routes } from './routes'
+import { routes } from './routes/routes'
 import { store } from './store/store'
 
 

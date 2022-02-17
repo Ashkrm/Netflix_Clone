@@ -72,9 +72,7 @@
         return this.showList.filter((item) => item.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0);
       },
       routeToDetails(imdbID) {
-        const route = this.$router.resolve({
-          path: "/details/" + imdbID
-        });
+        const route = this.$router.resolve({ name: 'details', params: {id: imdbID}});
         window.open(route.href);
       }
     }

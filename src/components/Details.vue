@@ -61,11 +61,6 @@
         show: []
       }
     },
-    watch: {
-      '$route'(to, from) {
-        this.id = to.params.id
-      }
-    },
     created() {
       var myMovieDetails = new MovieDetailsService()
       myMovieDetails.getMovieDetails(this.id)
