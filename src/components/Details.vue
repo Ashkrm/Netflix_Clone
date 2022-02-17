@@ -4,15 +4,15 @@
       <img :src="responseObj.Poster" alt="MovieImage">
       <h2>{{ responseObj.Title }}</h2>
       <br>
-      <div style="padding-right: 400px">
-        <div style="font-size: 20px; color: gold;">
-          <span><i class="pr-1 fab fa-imdb"></i>{{ responseObj.imdbRating }}</span>
+      <div class="info">
+        <div>
+          <span><i class="imdb-icon fab fa-imdb"></i>{{ responseObj.imdbRating }}</span>
           <span class="rated">{{ responseObj.Rated }}</span>
           <span v-if='responseObj.Type == "series"'>{{ responseObj.totalSeasons }} Seasons</span>
           <span v-else>{{ responseObj.Runtime }}</span>
         </div>
         <br>
-        <p style="font-size: 24px">{{ responseObj.Plot }}</p>
+        <p class="plot">{{ responseObj.Plot }}</p>
         <br>
         <table>
           <tr>
@@ -107,19 +107,25 @@
     float: right;
   }
 
+  .info {
+    padding-right: 400px;
+  }
+
+  .info div {
+    font-size: 20px; color: gold;
+  }
+
   .rated {
     border: 1px solid;
     padding: 0 5px 0 5px;
     margin: 0 60px 0 60px;
   }
+  
+  .imdb-icon {
+    padding-right: 4px;
+  }
 
-  .button {
-    border: 1px solid white;
-    color: rgb(207, 4, 4);
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+  .plot {
     font-size: 24px;
   }
 
