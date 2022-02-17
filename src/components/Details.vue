@@ -41,7 +41,7 @@
     </div>
     <div class="trailer">
       <figure class="image is-16by9">
-        <iframe class="has-ratio" width="64" height="36" :src='getTrailer' frameborder="0" allowfullscreen></iframe>
+        <iframe class="has-ratio" width="64" height="36" :src='getTrailer(id)' frameborder="0" allowfullscreen></iframe>
       </figure>
     </div>
   </div>
@@ -56,9 +56,7 @@
     data() {
       return {
         id: this.$route.params.id,
-        responseObj: {},
-        shows: [],
-        show: []
+        responseObj: {}
       }
     },
     created() {
@@ -73,13 +71,8 @@
     },
     computed: {
       ...mapGetters([
-        'getShows'
-      ]),
-      getTrailer() {
-        this.shows = this.getShows;
-        this.show = this.shows.filter((item) => item.imdbID.toLowerCase().indexOf(this.id) >= 0);
-        return 'https://www.youtube-nocookie.com/embed/' + this.show[0].trailer
-      }
+        'getTrailer'
+      ])
     }
   }
 

@@ -13,6 +13,10 @@ export const store = new Vuex.Store({
 	getters: {
 		getShows: state => {
 			return state.movieList.shows;
+		},
+		getTrailer: state => id => {
+        	const show = state.movieList.shows.filter((item) => item.imdbID.toLowerCase().indexOf(id) >= 0);
+        	return 'https://www.youtube-nocookie.com/embed/' + show[0].trailer
 		}
 	},
 	mutations: {
