@@ -1,5 +1,6 @@
 <template>
-  <div>
+<div>
+  <div v-if="!isErrorDetailsAPI">
     <div class="details">
       <img :src="responseObj.Poster" alt="MovieImage">
       <h2>{{ responseObj.Title }}</h2>
@@ -45,6 +46,11 @@
       </figure>
     </div>
   </div>
+  <div v-else class="error-content"> 
+    <h2>Sorry!!! 😕</h2>
+    <p>Could not load Movie details</p>
+  </div>
+</div>
 </template>
 
 <script>
@@ -56,17 +62,19 @@
     data() {
       return {
         id: this.$route.params.id,
-        responseObj: {}
+        responseObj: {},
+        isErrorDetailsAPI: false
       }
     },
     created() {
-      var myMovieDetails = new MovieDetailsService()
+      const myMovieDetails = new MovieDetailsService()
       myMovieDetails.getMovieDetails(this.id)
         .then(response => {
           this.responseObj = response.data
         })
         .catch(err => {
           console.log(err)
+          this.isErrorDetailsAPI = true;
         })
     },
     computed: {
@@ -131,4 +139,11 @@
     padding: 20px 250px 0 250px;
   }
 
+  .error-content {
+    padding: 50px;
+  }
+
+  .error-content p {
+    font-size: 32px;
+  }
 </style>

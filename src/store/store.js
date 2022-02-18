@@ -8,7 +8,8 @@ const myMovieList = new MovieListService()
 
 export const store = new Vuex.Store({
   state: {
-		movieList: {}
+		movieList: {},
+		errorMovieAPI: false
 	},
 	getters: {
 		getShows: state => {
@@ -17,7 +18,8 @@ export const store = new Vuex.Store({
 		getTrailer: state => id => {
         	const show = state.movieList.shows.filter((item) => item.imdbID.toLowerCase().indexOf(id) >= 0);
         	return 'https://www.youtube-nocookie.com/embed/' + show[0].trailer
-		}
+		},
+		isErrorMovieAPI: state => state.errorMovieAPI
 	},
 	mutations: {
 		setMovieList: (state, responseObj) => {
@@ -25,11 +27,14 @@ export const store = new Vuex.Store({
 		} 
 	},
 	actions: {
-		setMovieList: async({commit}) => {
-			const responseObj = await myMovieList.getMovieList()
-        .then(response => response.data)
-        .catch(err => console.log(err))
-			commit("setMovieList", responseObj);	
+		setMovieList: async({commit,state}) => {
+			try {
+				const responseObj = await myMovieList.getMovieList().then(response => response.data)
+				commit("setMovieList", responseObj);
+			} catch(err) {
+				console.log(err)
+				state.errorMovieAPI = true
+			}	
 		}
 
 	}
