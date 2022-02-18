@@ -32,7 +32,6 @@ export const store = new Vuex.Store({
 				const responseObj = await myMovieList.getMovieList().then(response => response.data)
 				commit("setMovieList", responseObj);
 			} catch(err) {
-				console.log(err)
 				state.errorMovieAPI = true
 			}	
 		}

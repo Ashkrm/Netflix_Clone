@@ -73,7 +73,6 @@
           this.responseObj = response.data
         })
         .catch(err => {
-          console.log(err)
           this.isErrorDetailsAPI = true;
         })
     },
