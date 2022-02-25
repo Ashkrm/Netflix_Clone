@@ -18,7 +18,8 @@
     methods: {
       routerFunction() {
         let route = this.$router.resolve({
-          path: "/details/" + this.id
+          name: 'details',
+          params: { id: this.id}
         });
         window.open(route.href);
       }

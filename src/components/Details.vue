@@ -1,18 +1,19 @@
 <template>
-  <div>
+<div>
+  <div v-if="!isErrorDetailsAPI">
     <div class="details">
       <img :src="responseObj.Poster" alt="MovieImage">
       <h2>{{ responseObj.Title }}</h2>
       <br>
-      <div style="padding-right: 400px">
-        <div style="font-size: 20px; color: gold;">
-          <span><i class="pr-1 fab fa-imdb"></i>{{ responseObj.imdbRating }}</span>
+      <div class="info">
+        <div>
+          <span><i class="imdb-icon fab fa-imdb"></i>{{ responseObj.imdbRating }}</span>
           <span class="rated">{{ responseObj.Rated }}</span>
           <span v-if='responseObj.Type == "series"'>{{ responseObj.totalSeasons }} Seasons</span>
           <span v-else>{{ responseObj.Runtime }}</span>
         </div>
         <br>
-        <p style="font-size: 24px">{{ responseObj.Plot }}</p>
+        <p class="plot">{{ responseObj.Plot }}</p>
         <br>
         <table>
           <tr>
@@ -41,10 +42,15 @@
     </div>
     <div class="trailer">
       <figure class="image is-16by9">
-        <iframe class="has-ratio" width="64" height="36" :src='getTrailer' frameborder="0" allowfullscreen></iframe>
+        <iframe class="has-ratio" width="64" height="36" :src='getTrailer(id)' frameborder="0" allowfullscreen></iframe>
       </figure>
     </div>
   </div>
+  <div v-else class="error-content"> 
+    <h2>Sorry!!! 😕</h2>
+    <p>Could not load Movie details</p>
+  </div>
+</div>
 </template>
 
 <script>
@@ -57,34 +63,23 @@
       return {
         id: this.$route.params.id,
         responseObj: {},
-        shows: [],
-        show: []
-      }
-    },
-    watch: {
-      '$route'(to, from) {
-        this.id = to.params.id
+        isErrorDetailsAPI: false
       }
     },
     created() {
-      var myMovieDetails = new MovieDetailsService()
+      const myMovieDetails = new MovieDetailsService()
       myMovieDetails.getMovieDetails(this.id)
         .then(response => {
           this.responseObj = response.data
         })
         .catch(err => {
-          console.log(err)
+          this.isErrorDetailsAPI = true;
         })
     },
     computed: {
       ...mapGetters([
-        'getShows'
-      ]),
-      getTrailer() {
-        this.shows = this.getShows;
-        this.show = this.shows.filter((item) => item.imdbID.toLowerCase().indexOf(this.id) >= 0);
-        return 'https://www.youtube-nocookie.com/embed/' + this.show[0].trailer
-      }
+        'getTrailer'
+      ])
     }
   }
 
@@ -107,19 +102,25 @@
     float: right;
   }
 
+  .info {
+    padding-right: 400px;
+  }
+
+  .info div {
+    font-size: 20px; color: gold;
+  }
+
   .rated {
     border: 1px solid;
     padding: 0 5px 0 5px;
     margin: 0 60px 0 60px;
   }
+  
+  .imdb-icon {
+    padding-right: 4px;
+  }
 
-  .button {
-    border: 1px solid white;
-    color: rgb(207, 4, 4);
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+  .plot {
     font-size: 24px;
   }
 
@@ -137,4 +138,11 @@
     padding: 20px 250px 0 250px;
   }
 
+  .error-content {
+    padding: 50px;
+  }
+
+  .error-content p {
+    font-size: 32px;
+  }
 </style>
